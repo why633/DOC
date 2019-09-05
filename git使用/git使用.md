@@ -140,13 +140,19 @@ git clone git@github.com:xxxxxx
 但Git的分支是与众不同的，无论创建、切换和删除分支，Git在1秒钟之内就能完成！无论你的版本库是1个文件还是1万个文件。
 
 ## 创建与合并分支
-创建dev分支，然后切换到dev分支：
-```bash
-git checkout -b dev
-```
-git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
-```bash
-git branch dev
-git checkout dev
-```
-dev分支测试
+
+查看分支：git branch
+
+创建分支：git branch name
+
+切换分支：git checkout name或者git switch name
+
+创建+切换分支：git checkout -b name或者git switch -c name
+
+合并某分支到当前分支：git merge name
+
+删除分支：git branch -d name
+
+## 解决冲突
+当两个分支同时修改了一个文件时提交合并会出现冲突，这时候需要手动解决冲突重新提交合并
+
