@@ -54,3 +54,5 @@ git config --global user.email "email@example.com"
 ## 查看状态
 1. git status 命令可以让我们时刻掌握仓库当前的状态
 2. git diff 查看文件改动了那些地方，可以在提交前查看文件进行了那些修改，然后再添加到仓库做到心中有数
+## 版本回退
+测试版本回退
