@@ -45,14 +45,49 @@ git config --global user.email "email@example.com"
 
 将文件添加到版本库
 1. 使用命令git add <file>，注意，可反复多次使用，添加多个文件；
-2. 使用命令git commit -m <message>，完成。
+2. 使用命令`git commit -m <message>`，完成。
    ```bash
    git add <file>
    git commit -m <message>
    ```
 # 操作
 ## 查看状态
-1. git status 命令可以让我们时刻掌握仓库当前的状态
-2. git diff 查看文件改动了那些地方，可以在提交前查看文件进行了那些修改，然后再添加到仓库做到心中有数
+1. `git status` 命令可以让我们时刻掌握仓库当前的状态
+2. `git diff` 查看文件改动了那些地方，可以在提交前查看文件进行了那些修改，然后再添加到仓库做到心中有数
 ## 版本回退
-测试版本回退
+1. `git log` 显示从最近到最远的提交日志，
+   `git log --pretty=oneline` 每条日志一行显示
+2. `HEAD`指向的版本就是当前版本
+   ```bash
+   # HEAD^表示上个版本 HEAD^表示上上个版本
+   git reset --hard HEAD^ # 回退到上个版本
+   git reset --hard <commit id> # 回退到指定版本
+   ```
+3. `git reflog` 查看命令历史，以便确定要回到未来的哪个版本
+
+## 工作区和暂存区
+Git与SVN的一个不同之处就是有暂存区的概念
+
+### 工作区（Working Directory）
+就是在电脑里能看见文件夹
+### 版本库（Repository）
+> 工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
+
+> Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。
+![](./images/01.jpg)
+
+>把文件往Git版本库里添加的时候，是分两步执行的：
+>
+> 第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；
+>
+>第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。
+>
+>因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。
+>
+>你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。
+
+`git add` 后状态
+![](./images/02.jpg)
+
+`git commit` 后状态
+![](./images/03.jpg)
